@@ -1,0 +1,129 @@
+### Health Check
+GET http://localhost:3000/health
+
+### ========================================
+### SUBSCRIPTIONS CRUD
+### ========================================
+
+### Get all subscriptions
+GET http://localhost:3000/api/subscriptions
+
+### Get subscription totals (Cálculos mensuales)
+GET http://localhost:3000/api/subscriptions/totals
+
+### Get single subscription (replace {id} with actual ID)
+GET http://localhost:3000/api/subscriptions/{id}
+
+### Create new subscription - Netflix
+POST http://localhost:3000/api/subscriptions
+Content-Type: application/json
+
+{
+  "name": "Netflix",
+  "price": 15.99,
+  "currency": "USD",
+  "frequency": "MONTHLY",
+  "paymentDate": 15
+}
+
+### Create new subscription - Spotify
+POST http://localhost:3000/api/subscriptions
+Content-Type: application/json
+
+{
+  "name": "Spotify Premium",
+  "price": 9.99,
+  "currency": "USD",
+  "frequency": "MONTHLY",
+  "paymentDate": 1
+}
+
+### Create new subscription - Gimnasio (HNL)
+POST http://localhost:3000/api/subscriptions
+Content-Type: application/json
+
+{
+  "name": "Gimnasio Premium",
+  "price": 800,
+  "currency": "HNL",
+  "frequency": "MONTHLY",
+  "paymentDate": 5
+}
+
+### Create new subscription - Adobe (Anual)
+POST http://localhost:3000/api/subscriptions
+Content-Type: application/json
+
+{
+  "name": "Adobe Creative Cloud",
+  "price": 599.88,
+  "currency": "USD",
+  "frequency": "ANNUAL",
+  "paymentDate": 20
+}
+
+### Update subscription (replace {id} with actual ID)
+PUT http://localhost:3000/api/subscriptions/{id}
+Content-Type: application/json
+
+{
+  "price": 19.99,
+  "name": "Netflix Premium"
+}
+
+### Partial update subscription (replace {id} with actual ID)
+PATCH http://localhost:3000/api/subscriptions/{id}
+Content-Type: application/json
+
+{
+  "price": 12.99
+}
+
+### Delete subscription (replace {id} with actual ID)
+DELETE http://localhost:3000/api/subscriptions/{id}
+
+### ========================================
+### VALIDATION TESTS
+### ========================================
+
+### Test - Missing required fields
+POST http://localhost:3000/api/subscriptions
+Content-Type: application/json
+
+{
+  "name": "Test"
+}
+
+### Test - Invalid currency
+POST http://localhost:3000/api/subscriptions
+Content-Type: application/json
+
+{
+  "name": "Test",
+  "price": 10,
+  "currency": "EUR",
+  "frequency": "MONTHLY"
+}
+
+### Test - Invalid frequency
+POST http://localhost:3000/api/subscriptions
+Content-Type: application/json
+
+{
+  "name": "Test",
+  "price": 10,
+  "currency": "USD",
+  "frequency": "WEEKLY"
+}
+
+### Test - Invalid payment date
+POST http://localhost:3000/api/subscriptions
+Content-Type: application/json
+
+{
+  "name": "Test",
+  "price": 10,
+  "currency": "USD",
+  "frequency": "MONTHLY",
+  "paymentDate": 35
+}
